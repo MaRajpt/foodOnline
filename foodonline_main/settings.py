@@ -15,6 +15,7 @@ import os
 from decouple import config
 from django.conf.urls.static import static
 from django.conf import settings
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,7 +35,9 @@ ALLOWED_HOSTS = [os.getenv('APP_HOST'),'127.0.0.1']
 
 # Application definition
 
+
 INSTALLED_APPS = [
+    'vendor.apps.VendorConfig',
     'accounts.apps.AccountsConfig',
     'app.apps.AppConfig',
     'django.contrib.admin',
@@ -137,3 +140,9 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# V.73  CUSTOMS DJANGO MESSAGES USING BOOTSTRAP DANGER CLASS
+MESSAGE_TAGS = {
+    messages.ERROR:"danger",
+}
