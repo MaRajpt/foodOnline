@@ -40,12 +40,12 @@ INSTALLED_APPS = [
     'vendor.apps.VendorConfig',
     'accounts.apps.AccountsConfig',
     'app.apps.AppConfig',
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.admin',
 ]
 
 MIDDLEWARE = [
@@ -146,3 +146,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MESSAGE_TAGS = {
     messages.ERROR:"danger",
 }
+
