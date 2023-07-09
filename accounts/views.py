@@ -43,11 +43,16 @@ def registerUser(request):
             user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, password=password, email=email)
             user.role = User.CUSTOMER
             user.save()
-            
-            messages.success(request, 'Your account has been registered successfully !')
+            mail_subject = 'Please activate your account'
+            email_template = 'accounts/emails/account_verification_email.html'
+           
 
               # SEND VERIFICATION EMAIL
-            send_verification_email(request, user)
+            mail_subject = 'Please activate your account'
+            email_template = 'accounts/emails/account_verification_email.html'
+            send_verification_email(request, user, mail_subject, email_template)
+
+            messages.success(request, 'An account activation email sent to your mail addresss !')
 
             return redirect('registerUser')
         else:
@@ -88,7 +93,7 @@ def registerVendor(request):
             mail_subject = 'Please activate your account'
             email_template = 'accounts/emails/account_verification_email.html'
             send_verification_email(request, user, mail_subject, email_template)
-            messages.success(request, 'Your wonderful restaurant has been registered successfully !')
+            messages.success(request, 'An account activation email sent to your mail addresss !')
             return redirect('registerVendor')
         else:
 
@@ -154,7 +159,6 @@ def customerDashboard(request):
 @login_required(login_url='login')
 @user_passes_test(check_role_vendor)
 def vendorDashboard(request):
-  
     return render(request, 'accounts/vendorDashboard.html')
 
 
